@@ -25,9 +25,7 @@ const GoogleAdConfigurator = ({
   settingsHandler,
   resetKeyword,
 }) => {
-  useEffect(() => {
-    console.log(keywords);
-  }, []);
+  
   const show = () => {
     return (
       <Grid container spacing={3} style={{ padding: "7px" }}>

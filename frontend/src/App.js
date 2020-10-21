@@ -48,7 +48,7 @@ const App = () => {
   const settingsHandler = (changeType, newValue, name) => {
     let data = null;
     if (changeType === "add" || changeType === "sub") {
-      console.log("adding");
+      // console.log("adding");
 
       // make an api call to change the
       if (name === "waittarget1") {
@@ -60,14 +60,13 @@ const App = () => {
       } else if (name === "pagestop") {
         data = { ...state.settings, pagestop: newValue };
       }
-      console.log(data);
+      // console.log(data);
     } else if (changeType === "checkbox") {
       if (name === "incognito") {
         data = { ...state.settings, incognito: newValue };
       } else if (name === "visitpage") {
         data = { ...state.settings, visitpage: newValue };
       }
-      console.log(data);
     } else if (changeType === null) {
     }
     axios({
@@ -75,7 +74,6 @@ const App = () => {
       url: UPDATESETTINGS.url,
       data,
     }).then((res) => {
-      console.log(res.data);
       setState({ ...state, settings: data });
     });
   };
@@ -86,7 +84,6 @@ const App = () => {
 
   useEffect(() => {
     // api call to get setting data
-    console.log("making api call to get settings data");
     axios({
       method: GETSETTINGS.method,
       url: GETSETTINGS.url,
@@ -94,10 +91,8 @@ const App = () => {
         ID: state.userID,
       },
     }).then((res) => {
-      console.log(res.data);
       let settingsData = res.data.settings;
       // api call to get all keywords by the user
-      console.log("making get keywords api call");
       axios({
         method: GETKEYWORDS.method,
         url: GETKEYWORDS.url,
@@ -106,7 +101,6 @@ const App = () => {
         },
       }).then((res) => {
         let keywordsData = res.data.keywords;
-        console.log(res.data);
         axios({
           method: GETSITES.method,
           url: GETSITES.url,
@@ -114,7 +108,6 @@ const App = () => {
             ID: state.userID,
           },
         }).then((res) => {
-          console.log(res.data);
           setState({
             ...state,
             sites: res.data.sites,
@@ -127,7 +120,6 @@ const App = () => {
   }, [state.userID]);
   const resetKeyword = () => {
     // api call to reset all keywords by the user
-    console.log("reseting keywords list by calling the api again");
     axios({
       method: GETKEYWORDS.method,
       url: GETKEYWORDS.url,
@@ -135,7 +127,6 @@ const App = () => {
         ID: state.userID,
       },
     }).then((res) => {
-      console.log(res.data);
       setState({
         ...state,
         keywords: res.data.keywords,
@@ -144,7 +135,6 @@ const App = () => {
   };
   const resetSite = () => {
     // api call to reset all sites by the user
-    console.log("reseting sites list by calling the api again");
     axios({
       method: GETSITES.method,
       url: GETSITES.url,
@@ -152,7 +142,6 @@ const App = () => {
         ID: state.userID,
       },
     }).then((res) => {
-      console.log(res.data);
       setState({
         ...state,
         sites: res.data.sites,
@@ -163,17 +152,15 @@ const App = () => {
     setState({ ...state, userID: ID });
   };
   const onStart = (settings) => {
-    console.log(settings);
-    alert("Starting engine with settings");
+    alert("onStart clicked. This is being called from main app. ");
     return null;
   };
   const onStop = () => {
-    alert("Stoping engine");
+    alert("onStop clicked. This is being called from main app. ");
     return null;
   };
   const onExport = (settings) => {
-    console.log(settings);
-    alert("Exporting engine");
+    alert("Exporting engine... beep boop beep baap baap!");
     return null;
   };
   return (

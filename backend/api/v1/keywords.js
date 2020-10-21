@@ -17,7 +17,6 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      console.log(req.body);
       const option = { ID: req.body.ID, keyword: `${req.body.keyword}` };
       let sql = "INSERT IGNORE INTO keyword_setting SET ?";
       //   let sql = `INSERT IGNORE INTO keyword_setting (PK_Keywords, ID, keyword) VALUES (NULL, ${ID},${keyword});`;
@@ -28,7 +27,6 @@ router.post(
             .status(500)
             .json({ msg: "Error while saving to db. Check server log!" });
         } else {
-          console.log(result);
           if (result.affectedRows === 0) {
             return res.status(400).json({ msg: "Duplicate Keyword" });
           } else {
@@ -67,7 +65,6 @@ router.delete(
             .status(500)
             .json({ msg: "Error while deleting from db. Check server log!" });
         } else {
-          console.log(result)
           return res.json({msg : "Keyword successfully deleted"})
         }
       });
@@ -92,12 +89,10 @@ router.get(
           return res.status(400).json({ errors: errors.array() });
         }
         const {ID} = req.query
-        console.log(req.query);
         let sql = `SELECT keyword FROM keyword_setting WHERE ID = ${ID};`;
         //   let sql = `INSERT IGNORE INTO keyword_setting (PK_Keywords, ID, keyword) VALUES (NULL, ${ID},${keyword});`;
         let query = db.query(sql ,(err, result) => {
           if (err) {
-            //   console.log(err);
             return res
               .status(500)
               .json({ msg: "Error while saving to db. Check server log!" });

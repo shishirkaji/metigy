@@ -10,7 +10,6 @@ const { check, validationResult } = require("express-validator");
 router.get(
   "/",
   async (req, res) => {
-    console.log("get request  "+req.query.ID)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -49,7 +48,6 @@ router.post(
   ],
   async (req, res) => {
     try {
-      console.log(req.body);
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -82,7 +80,6 @@ router.post(
             .status(500)
             .json({ msg: "Error while saving to db. Check server log!" });
         }
-        console.log(result);
         res.json({ msg: "Settings saved" });
       });
     } catch (error) {
@@ -107,7 +104,6 @@ router.put(
   ],
   async (req, res) => {
     try {
-      console.log(req.body);
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -131,7 +127,6 @@ router.put(
         pagestart,
         pagestop,
       };
-      console.log(ID);
       const sql = `UPDATE  user_setting SET ? WHERE id =${ID}`;
 
       let query = db.query(sql, settings, (err, result) => {
@@ -141,7 +136,6 @@ router.put(
             .status(500)
             .json({ msg: "Error while saving to db. Check server log!" });
         }
-        console.log(result);
         res.json({ msg: "Settings updated" });
       });
     } catch (error) {

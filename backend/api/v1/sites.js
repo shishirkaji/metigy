@@ -28,7 +28,6 @@ router.post(
             .status(500)
             .json({ msg: "Error while saving to db. Check server log!" });
         } else {
-          console.log(result);
           if (result.affectedRows === 0) {
             return res.status(400).json({ msg: "Duplicate site" });
           } else {
@@ -67,7 +66,6 @@ router.delete(
             .status(500)
             .json({ msg: "Error while deleting from db. Check server log!" });
         } else {
-          console.log(result)
           return res.json({msg : "Site successfully deleted"})
         }
       });

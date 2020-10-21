@@ -29,53 +29,42 @@ const Keyword = ({ classes, keywords, resetKeyword, ID }) => {
       keyword:keyword
     }
     
-    console.log(keyword)
     axios({
       method: DELETEKEYWORDS.method,
       url: DELETEKEYWORDS.url,
       data :{ID , keyword}
     })
       .then((res) => {
-        console.log("DELETE KEYWORD SUCCESS " + res);
         if (res.status === 200) {
           // clear the text area
           resetKeyword();
         } else if (res.status === 400) {
-          console.log(res.data);
         }
       })
       .catch((err) => {
-        console.log(err.response.data.msg);
         toast.error(err.response.data.msg)
       });
   }
   const addHandler = (e) => {
     // make api call to add the keyword
     e.preventDefault();
-    console.log("adding.... keyword");
     const data = {
       ID,
       keyword: state,
     };
-    console.log(data);
     axios({
       method: ADDKEYWORD.method,
       url: ADDKEYWORD.url,
       data: data,
     })
       .then((res) => {
-        console.log("herllo here is the response " + res);
         if (res.status === 200) {
           // clear the text area
           setState("");
           resetKeyword();
-        } else if (res.status === 400) {
-          console.log(res.data);
-        }
+        } 
       })
       .catch((err) => {
-        console.log(err.status);
-        console.log(err.response.data.msg);
         toast.error(err.response.data.msg)
       });
   };
