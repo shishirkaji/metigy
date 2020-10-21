@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -9,7 +9,15 @@ import PanToolOutlinedIcon from "@material-ui/icons/PanToolOutlined";
 import IncreamentComp from "./IncreamentComp";
 import { makeStyles } from "@material-ui/core/styles";
 import PlayCircleOutlineOutlinedIcon from "@material-ui/icons/PlayCircleOutlineOutlined";
-const Settings = ({ classes , settings,onStart, onStop, onExport}) => {
+const Settings = ({
+  classes,
+  settings,
+  onStart,
+  onStop,
+  onExport,
+  settingsHandler,
+}) => {
+  useEffect(() => {}, [settings]);
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
@@ -144,7 +152,13 @@ const Settings = ({ classes , settings,onStart, onStop, onExport}) => {
                   control={
                     <Checkbox
                       checked={settings.incognito}
-                      onChange={handleChange}
+                      onChange={() => {
+                        settingsHandler(
+                          "checkbox",
+                          !settings.incognito,
+                          "incognito"
+                        );
+                      }}
                       name="checkedB"
                       color="primary"
                     />
@@ -165,8 +179,18 @@ const Settings = ({ classes , settings,onStart, onStop, onExport}) => {
               display: "inline-flex",
             }}
           >
-            <IncreamentComp label="wait" onAdd={null} value={settings.waittarget1} onSub={null} />
-            <IncreamentComp label={null} value={settings.waittarget2} />{" "}
+            <IncreamentComp
+              label="wait"
+              settingsHandler={settingsHandler}
+              name="waittarget1"
+              value={settings.waittarget1}
+            />
+            <IncreamentComp
+              label={null}
+              name="waittarget2"
+              settingsHandler={settingsHandler}
+              value={settings.waittarget2}
+            />{" "}
             <div style={style.para}>seconds on the targeted website.</div>
           </div>
           <div style={style.para}>
@@ -176,7 +200,13 @@ const Settings = ({ classes , settings,onStart, onStop, onExport}) => {
                   control={
                     <Checkbox
                       checked={settings.visitpage}
-                      onChange={handleChange}
+                      onChange={() => {
+                        settingsHandler(
+                          "checkbox",
+                          !settings.visitpage,
+                          "visitpage"
+                        );
+                      }}
                       name="checkedB"
                       color="primary"
                     />
@@ -198,9 +228,20 @@ const Settings = ({ classes , settings,onStart, onStop, onExport}) => {
               display: "inline-flex",
             }}
           >
-            <IncreamentComp onAdd={null} value={settings.pagestart} onSub={null} />
+            <IncreamentComp
+              onAdd={null}
+              settingsHandler={settingsHandler}
+              name="pagestart"
+              value={settings.pagestart}
+              onSub={null}
+            />
             <div style={style.para}>pages</div>
-            <IncreamentComp label={null} value={settings.pagestop} />
+            <IncreamentComp
+              label={null}
+              value={settings.pagestop}
+              name="pagestop"
+              settingsHandler={settingsHandler}
+            />
             <IncreamentComp label={null} value={40} />
             <div style={style.para}>Visit from to second.</div>
           </div>
@@ -454,27 +495,31 @@ const Settings = ({ classes , settings,onStart, onStop, onExport}) => {
       </Grid>
       <Grid item xs={12} style={{ marginTop: "8px" }}>
         <Button
-         className ={buttonStyle.button}
+          className={buttonStyle.button}
           variant="contained"
           style={{ backgroundColor: "#FDBC00" }}
-          onClick = {(e)=>onExport(settings)}
+          onClick={(e) => onExport(settings)}
         >
           Export Report
         </Button>
         <Button
-        className ={buttonStyle.button}
+          className={buttonStyle.button}
           startIcon={<PanToolOutlinedIcon />}
           variant="contained"
-          style={{ backgroundColor: "#0086F9" }}  onClick = {(e)=>onStop()}
+          style={{ backgroundColor: "#0086F9" }}
+          onClick={(e) => onStop()}
         >
           Stop
         </Button>
         <Button
-         className ={buttonStyle.button}
+          className={buttonStyle.button}
           startIcon={<PlayCircleOutlineOutlinedIcon />}
           variant="contained"
-          style={{ backgroundColor: "#00A84B" }}  onClick = {(e)=>onStart(settings)}
-        >Start</Button>
+          style={{ backgroundColor: "#00A84B" }}
+          onClick={(e) => onStart(settings)}
+        >
+          Start
+        </Button>
       </Grid>
     </Grid>
   );

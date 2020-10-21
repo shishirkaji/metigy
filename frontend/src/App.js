@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import GoogleAdConfigurator from "./component/GoogleAdConfigurator";
-import Landing from "./component/Landing";
 import axios from "axios";
 import NotFound from "./component/NotFound";
 import AppBar from "@material-ui/core/AppBar";
@@ -43,8 +42,40 @@ const App = () => {
     userID: 1,
     settings: null,
   });
-  const [userID, setUserID] = useState(2);
+  const settingsHandler = (changeType, newValue, name) => {
+    let data = null;
+    if (changeType === "add" || changeType === "sub") {
+      console.log("adding");
 
+      // make an api call to change the
+      if (name === "waittarget1") {
+        data = { ...state.settings, waittarget1: newValue };
+      } else if (name === "waittarget2") {
+        data = { ...state.settings, waittarget2: newValue };
+      } else if (name === "pagestart") {
+        data = { ...state.settings, pagestart: newValue };
+      } else if (name === "pagestop") {
+        data = { ...state.settings, pagestop: newValue };
+      }
+      console.log(data);
+    } else if (changeType === "checkbox") {
+      if (name === "incognito") {
+        data = { ...state.settings, incognito: newValue };
+      } else if (name === "visitpage") {
+        data = { ...state.settings, visitpage: newValue };
+      }
+      console.log(data);
+    } else if (changeType === null) {
+    }
+    axios({
+      method: UPDATESETTINGS.method,
+      url: UPDATESETTINGS.url,
+      data,
+    }).then((res) => {
+      console.log(res.data);
+      setState({ ...state, settings: data });
+    });
+  };
   useEffect(() => {
     axios.defaults.baseURL = "http://192.168.43.161:5000/api/v1";
     axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -84,12 +115,6 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {/* <GoogleAdConfigurator
-          onStart={onStart}
-          settings={state.settings}
-          onStop={onStop}
-          onExport={onExport}
-        /> */}
         <AppBar position="sticky" style={{ flexGrow: 1 }}>
           <Toolbar>
             <Button
@@ -141,7 +166,7 @@ const App = () => {
               settings={state.settings}
               onStop={onStop}
               onExport={onExport}
-              // style ={{marginTop :"50px"}}
+              settingsHandler={settingsHandler}
             />
           </Route>
           <Route path="*">

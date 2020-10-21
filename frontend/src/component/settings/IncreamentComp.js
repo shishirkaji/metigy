@@ -17,7 +17,7 @@ const style = {
     display: "inline-flex",
   },
 };
-const IncreamentComp = ({label,value,onAdd,onSub}) => {
+const IncreamentComp = ({ label, value, settingsHandler, name }) => {
   return (
     <div style={style.increament}>
       <div style={style.increamentLabel}>{label}</div>{" "}
@@ -27,14 +27,24 @@ const IncreamentComp = ({label,value,onAdd,onSub}) => {
       <div
         style={{
           paddingLeft: "11px",
-          paddingRight: "11px",paddingTop : '2px', paddingBottom : "2px",
+          paddingRight: "11px",
+          paddingTop: "2px",
+          paddingBottom: "2px",
           border: "thin solid #243851",
         }}
       >
-        <div className="four" onClick={()=>console.log("clicked")}>
+        <div
+          className="four"
+          onClick={() =>{ settingsHandler("add", value + 1, name)}}
+        >
           +
         </div>
-        <div className="five">-</div>
+        <div
+          className="five"
+          onClick={() => settingsHandler("sub", value - 1, name)}
+        >
+          -
+        </div>
       </div>
     </div>
   );

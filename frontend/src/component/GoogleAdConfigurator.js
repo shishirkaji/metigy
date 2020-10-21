@@ -14,14 +14,26 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
-const GoogleAdConfigurator = ({ settings, onStart, onStop, onExport }) => {
- 
+const GoogleAdConfigurator = ({
+  settings,
+  onStart,
+  onStop,
+  onExport,
+  settingsHandler,
+}) => {
   const show = () => {
     return (
       <Grid container spacing={3} style={{ padding: "7px" }}>
         <Keyword classes={classes} />
         <Sites classes={classes} />
-        <Settings classes={classes} onStart={onStart} onStop={onStop} onExport={onExport} settings={settings} />
+        <Settings
+          settingsHandler={settingsHandler}
+          classes={classes}
+          onStart={onStart}
+          onStop={onStop}
+          onExport={onExport}
+          settings={settings}
+        />
       </Grid>
     );
   };
