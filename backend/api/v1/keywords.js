@@ -57,8 +57,8 @@ router.get(
         if (!errors.isEmpty()) {
           return res.status(400).json({ errors: errors.array() });
         }
-        const {ID} = req.body
-        console.log(req.body);
+        const {ID} = req.query
+        console.log(req.query);
         let sql = `SELECT keyword FROM keyword_setting WHERE ID = ${ID};`;
         //   let sql = `INSERT IGNORE INTO keyword_setting (PK_Keywords, ID, keyword) VALUES (NULL, ${ID},${keyword});`;
         let query = db.query(sql ,(err, result) => {

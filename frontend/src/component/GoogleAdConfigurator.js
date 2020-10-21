@@ -16,15 +16,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 const GoogleAdConfigurator = ({
   settings,
+  keywords,
   onStart,
   onStop,
   onExport,
   settingsHandler,
+  resetKeyword,
 }) => {
+  useEffect(() => {
+    console.log(keywords);
+  }, []);
   const show = () => {
     return (
       <Grid container spacing={3} style={{ padding: "7px" }}>
-        <Keyword classes={classes} />
+        <Keyword
+          classes={classes}
+          keywords={keywords}
+          resetKeyword={resetKeyword}
+          ID={settings.ID}
+        />
         <Sites classes={classes} />
         <Settings
           settingsHandler={settingsHandler}
@@ -38,7 +48,8 @@ const GoogleAdConfigurator = ({
     );
   };
   const classes = useStyles();
-  return settings === null ? <div>Loading..</div> : show();
+  return settings === null || keywords === null ? <div>Loading..</div> : show();
+  // return show();
 };
 
 export default GoogleAdConfigurator;

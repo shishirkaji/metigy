@@ -41,7 +41,9 @@ const App = () => {
   const [state, setState] = useState({
     userID: 1,
     settings: null,
+    keywords: null,
   });
+
   const settingsHandler = (changeType, newValue, name) => {
     let data = null;
     if (changeType === "add" || changeType === "sub") {
@@ -80,9 +82,10 @@ const App = () => {
     axios.defaults.baseURL = "http://192.168.43.161:5000/api/v1";
     axios.defaults.headers.post["Content-Type"] = "application/json";
   }, []);
+
   useEffect(() => {
-    // make api call
-    console.log("making api call to settings");
+    // api call to get setting data
+    console.log("making api call to get settings data");
     axios({
       method: GETSETTINGS.method,
       url: GETSETTINGS.url,
@@ -90,10 +93,43 @@ const App = () => {
         ID: state.userID,
       },
     }).then((res) => {
-      setState({ ...state, settings: res.data.settings });
+      console.log(res.data);
+      let settingsData = res.data.settings;
+      // api call to get all keywords by the user
+      console.log("making get keywords api call");
+      axios({
+        method: GETKEYWORDS.method,
+        url: GETKEYWORDS.url,
+        params: {
+          ID: state.userID,
+        },
+      }).then((res) => {
+        console.log(res.data);
+        setState({
+          ...state,
+          keywords: res.data.keywords,
+          settings: settingsData,
+        });
+      });
     });
   }, [state.userID]);
-
+  const resetKeyword = () => {
+    // api call to reset all keywords by the user
+    console.log("reseting keywords list by calling the api again");
+    axios({
+      method: GETKEYWORDS.method,
+      url: GETKEYWORDS.url,
+      params: {
+        ID: state.userID,
+      },
+    }).then((res) => {
+      console.log(res.data);
+      setState({
+        ...state,
+        keywords: res.data.keywords,
+      });
+    });
+  };
   const setUser = (ID) => {
     setState({ ...state, userID: ID });
   };
@@ -162,6 +198,8 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <GoogleAdConfigurator
+              resetKeyword={resetKeyword}
+              keywords={state.keywords}
               onStart={onStart}
               settings={state.settings}
               onStop={onStop}

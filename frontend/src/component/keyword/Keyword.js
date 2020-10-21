@@ -1,33 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
 import Button from "@material-ui/core/Button";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import { makeStyles } from "@material-ui/core/styles";
-
-const dummyData = [
-  "shoes",
-  "shoes rack",
-  "shoes store",
-  "nike fashion",
-  "anaconda",
-  "hero",
-  "test",
-];
+import { ADDKEYWORD } from "./../../utility";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const useStyles = makeStyles({
   button: {
     textTransform: "none",
     color: "white",
-    fontSize:"0.59rem"
+    fontSize: "0.59rem",
   },
 });
-const Keyword = ({ classes }) => {
+
+const Keyword = ({ classes, keywords, resetKeyword, ID }) => {
+  let [state, setState] = useState("");
   const style = useStyles();
+  const changeHandler = (e) => {
+    setState(e.target.value);
+  };
+  const addHandler = (e) => {
+    // make api call to add the keyword
+    e.preventDefault();
+    console.log("adding.... keyword");
+    const data = {
+      ID,
+      keyword: state,
+    };
+    console.log(data);
+    axios({
+      method: ADDKEYWORD.method,
+      url: ADDKEYWORD.url,
+      data: data,
+    })
+      .then((res) => {
+        console.log("herllo here is the response " + res);
+        if (res.status === 200) {
+          // clear the text area
+          setState("");
+          resetKeyword();
+        } else if (res.status === 400) {
+          console.log(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err.status);
+        console.log(err.response.data.msg);
+        toast.error(err.response.data.msg)
+      });
+  };
   const listItem = (item) => {
     return (
-      <div key={item} style={{ paddingBottom: "10px", paddingTop: "10px" }}>
-        {item}{" "}
+      <div
+        key={item.keyword}
+        style={{ paddingBottom: "10px", paddingTop: "10px" }}
+      >
+        {item.keyword}{" "}
         <Button
           startIcon={<RemoveCircleOutlineIcon />}
           className={style.button}
@@ -41,6 +73,7 @@ const Keyword = ({ classes }) => {
   };
   return (
     <Grid item xs={12} md={6} lg={3}>
+      <ToastContainer />
       <div
         style={{
           display: "flex",
@@ -64,6 +97,9 @@ const Keyword = ({ classes }) => {
         >
           <input
             type="text"
+            name="keywordText"
+            value={state}
+            onChange={(e) => changeHandler(e)}
             style={{ height: "37px", border: "none", width: "60%" }}
             placeholder="   Enter your site here"
           />
@@ -73,6 +109,9 @@ const Keyword = ({ classes }) => {
             variant="contained"
             color="primary"
             style={{ float: "right" }}
+            onClick={(e) => {
+              addHandler(e);
+            }}
           >
             Add
           </Button>{" "}
@@ -84,7 +123,8 @@ const Keyword = ({ classes }) => {
       >
         {" "}
         <ul>
-          {dummyData.map((item) => {
+          {/* {dummyData.map((item) => { */}
+          {keywords.map((item) => {
             return listItem(item);
           })}
         </ul>
