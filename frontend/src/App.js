@@ -117,7 +117,7 @@ const App = () => {
           console.log(res.data);
           setState({
             ...state,
-            sites : res.data.sites,
+            sites: res.data.sites,
             keywords: keywordsData,
             settings: settingsData,
           });
@@ -183,7 +183,7 @@ const App = () => {
         <AppBar position="sticky" style={{ flexGrow: 1 }}>
           <Toolbar>
             <Button
-              color="secondary"
+              color={state.userID === 1 ? "default" : "secondary"}
               variant="contained"
               style={{ float: "left", marginRight: "5px" }}
               onClick={(e) => {
@@ -193,7 +193,7 @@ const App = () => {
               User 1
             </Button>
             <Button
-              color="secondary"
+              color={state.userID === 2 ? "default" : "secondary"}
               variant="contained"
               style={{ float: "left", marginRight: "5px" }}
               onClick={(e) => {
@@ -203,7 +203,7 @@ const App = () => {
               User 2
             </Button>
             <Button
-              color="secondary"
+              color={state.userID === 3 ? "default" : "secondary"}
               variant="contained"
               style={{ float: "left", marginRight: "5px" }}
               onClick={(e) => {
@@ -213,7 +213,7 @@ const App = () => {
               User 3
             </Button>
             <Button
-              color="secondary"
+              color={state.userID === 4 ? "default" : "secondary"}
               variant="contained"
               style={{ float: "left", marginRight: "5px" }}
               onClick={(e) => {
@@ -230,10 +230,10 @@ const App = () => {
               resetKeyword={resetKeyword}
               keywords={state.keywords}
               onStart={onStart}
-              resetSite  = {resetSite}
+              resetSite={resetSite}
               settings={state.settings}
               onStop={onStop}
-              sites ={state.sites}
+              sites={state.sites}
               onExport={onExport}
               settingsHandler={settingsHandler}
             />

@@ -34,14 +34,20 @@ const IncreamentComp = ({ label, value, settingsHandler, name }) => {
         }}
       >
         <div
-          className="four"
-          onClick={() =>{ settingsHandler("add", value + 1, name)}}
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            if (!settingsHandler || !value) return;
+            settingsHandler("add", value + 1, name);
+          }}
         >
           +
         </div>
         <div
-          className="five"
-          onClick={() => settingsHandler("sub", value - 1, name)}
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            if (!settingsHandler || !value) return;
+            settingsHandler("sub", value - 1, name);
+          }}
         >
           -
         </div>

@@ -151,7 +151,7 @@ const Settings = ({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={settings.incognito}
+                      checked={settings.incognito }
                       onChange={() => {
                         settingsHandler(
                           "checkbox",
