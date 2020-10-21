@@ -1,0 +1,3 @@
+//create table
+CREATE TABLE `googleads`.`user_setting` ( `ID` INT NOT NULL AUTO_INCREMENT , `waittarget1` INT(3) NOT NULL , `waittarget2` INT(3) NOT NULL , `incognito` BOOLEAN NOT NULL , `visitpage` BOOLEAN NOT NULL , `pagestart` INT NOT NULL , `pagestop` INT NOT NULL , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
+//
