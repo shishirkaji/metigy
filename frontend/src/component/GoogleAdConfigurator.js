@@ -17,7 +17,9 @@ const useStyles = makeStyles((theme) => ({
 const GoogleAdConfigurator = ({
   settings,
   keywords,
+  sites,
   onStart,
+  resetSite,
   onStop,
   onExport,
   settingsHandler,
@@ -35,7 +37,12 @@ const GoogleAdConfigurator = ({
           resetKeyword={resetKeyword}
           ID={settings.ID}
         />
-        <Sites classes={classes} />
+        <Sites
+          classes={classes}
+          sites={sites}
+          resetSite={resetSite}
+          ID={settings.ID}
+        />
         <Settings
           settingsHandler={settingsHandler}
           classes={classes}
@@ -48,7 +55,11 @@ const GoogleAdConfigurator = ({
     );
   };
   const classes = useStyles();
-  return settings === null || keywords === null ? <div>Loading..</div> : show();
+  return settings === null || keywords === null || sites === null ? (
+    <div>Loading..</div>
+  ) : (
+    show()
+  );
   // return show();
 };
 

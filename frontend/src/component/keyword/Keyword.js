@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import { makeStyles } from "@material-ui/core/styles";
-import { ADDKEYWORD } from "./../../utility";
+import { ADDKEYWORD, DELETEKEYWORDS } from "./../../utility";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,6 +23,32 @@ const Keyword = ({ classes, keywords, resetKeyword, ID }) => {
   const changeHandler = (e) => {
     setState(e.target.value);
   };
+  const deleteItem=(keyword)=>{
+    let data = {
+      ID,
+      keyword:keyword
+    }
+    
+    console.log(keyword)
+    axios({
+      method: DELETEKEYWORDS.method,
+      url: DELETEKEYWORDS.url,
+      data :{ID , keyword}
+    })
+      .then((res) => {
+        console.log("DELETE KEYWORD SUCCESS " + res);
+        if (res.status === 200) {
+          // clear the text area
+          resetKeyword();
+        } else if (res.status === 400) {
+          console.log(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response.data.msg);
+        toast.error(err.response.data.msg)
+      });
+  }
   const addHandler = (e) => {
     // make api call to add the keyword
     e.preventDefault();
@@ -61,10 +87,12 @@ const Keyword = ({ classes, keywords, resetKeyword, ID }) => {
       >
         {item.keyword}{" "}
         <Button
+
           startIcon={<RemoveCircleOutlineIcon />}
           className={style.button}
           variant="outlined"
           style={{ float: "right" }}
+          onClick = {()=>{deleteItem(item.keyword)}}
         >
           Clear
         </Button>

@@ -40,6 +40,7 @@ const theme = createMuiTheme({
 const App = () => {
   const [state, setState] = useState({
     userID: 1,
+    sites: null,
     settings: null,
     keywords: null,
   });
@@ -104,11 +105,22 @@ const App = () => {
           ID: state.userID,
         },
       }).then((res) => {
+        let keywordsData = res.data.keywords;
         console.log(res.data);
-        setState({
-          ...state,
-          keywords: res.data.keywords,
-          settings: settingsData,
+        axios({
+          method: GETSITES.method,
+          url: GETSITES.url,
+          params: {
+            ID: state.userID,
+          },
+        }).then((res) => {
+          console.log(res.data);
+          setState({
+            ...state,
+            sites : res.data.sites,
+            keywords: keywordsData,
+            settings: settingsData,
+          });
         });
       });
     });
@@ -127,6 +139,23 @@ const App = () => {
       setState({
         ...state,
         keywords: res.data.keywords,
+      });
+    });
+  };
+  const resetSite = () => {
+    // api call to reset all sites by the user
+    console.log("reseting sites list by calling the api again");
+    axios({
+      method: GETSITES.method,
+      url: GETSITES.url,
+      params: {
+        ID: state.userID,
+      },
+    }).then((res) => {
+      console.log(res.data);
+      setState({
+        ...state,
+        sites: res.data.sites,
       });
     });
   };
@@ -201,8 +230,10 @@ const App = () => {
               resetKeyword={resetKeyword}
               keywords={state.keywords}
               onStart={onStart}
+              resetSite  = {resetSite}
               settings={state.settings}
               onStop={onStop}
+              sites ={state.sites}
               onExport={onExport}
               settingsHandler={settingsHandler}
             />
