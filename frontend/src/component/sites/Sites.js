@@ -17,13 +17,16 @@ const useStyles = makeStyles({
   },
 });
 const Sites = ({ classes, resetSite, sites, ID }) => {
-  let [state, setState] = useState(" ");
+  let [state, setState] = useState("");
   const style = useStyles();
   const changeHandler = (e) => {
     setState(e.target.value);
   };
   const addSite = (e) => {
-    e.preventDefault();
+    if (state.length === 0) {
+      toast.error("Please type word and click add.")
+      return null;
+    } e.preventDefault();
     console.log("adding.... site");
     const data = {
       ID,
@@ -52,12 +55,12 @@ const Sites = ({ classes, resetSite, sites, ID }) => {
       });
   };
   const handleDelete = (item) => {
-    
+
     console.log(item);
     axios({
       method: DELETESITES.method,
       url: DELETESITES.url,
-      data: { ID, site:item },
+      data: { ID, site: item },
     })
       .then((res) => {
         console.log("DELETE KEYWORD SUCCESS " + res);

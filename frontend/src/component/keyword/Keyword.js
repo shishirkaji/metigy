@@ -47,6 +47,7 @@ const Keyword = ({ classes, keywords, resetKeyword, ID }) => {
   }
   const addHandler = (e) => {
     // make api call to add the keyword
+    if(state.length === 0) return toast.error("Please type word and click add.")
     e.preventDefault();
     const data = {
       ID,
