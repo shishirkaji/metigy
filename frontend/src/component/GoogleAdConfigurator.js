@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: "12px",
+    padding: "5px",
     textAlign: "left",
     color: theme.palette.text.secondary,
   },
@@ -28,7 +28,8 @@ const GoogleAdConfigurator = ({
   
   const show = () => {
     return (
-      <Grid container spacing={3} style={{ padding: "7px" }}>
+      <Grid container spacing ={1} style={{   margin: 0,
+        width: '100%',padding: "7px" }}>
         <Keyword
           classes={classes}
           keywords={keywords}

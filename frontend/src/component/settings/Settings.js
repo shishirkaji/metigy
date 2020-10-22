@@ -145,7 +145,7 @@ const Settings = ({
           </div>{" "}
         </Grid>
         <Grid item xs={3}>
-          <div style={{ backgroundColor: "#253046", padding: "12px" }}>
+          <div style={{ backgroundColor: "#253046", padding: "12px" ,overflow: "auto" }}>
             <FormGroup row>
               <div style={style.checkbox}>
                 <FormControlLabel
@@ -220,12 +220,12 @@ const Settings = ({
         </div>
       </Grid>
       <Grid item xs={12}>
-        <div style={{ backgroundColor: "#253046", paddingLeft: "10px" }}>
+        <div style={{ backgroundColor: "#253046", paddingLeft: "10px" ,overflow: "auto"  }}>
           <div
             style={{
               alignItems: "left",
               padding: "10px",
-              display: "inline-flex",
+              display: "inline-flex"
             }}
           >
             <IncreamentComp

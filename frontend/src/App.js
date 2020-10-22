@@ -170,6 +170,9 @@ const App = () => {
         <CssBaseline />
         <AppBar position="sticky" style={{ flexGrow: 1 }}>
           <Toolbar>
+            <div style ={{marginRight  : "10px"}}>
+              <h4>Google AdWord Configurator</h4>
+            </div>
             <Button
               color={state.userID === 1 ? "default" : "secondary"}
               variant="contained"
