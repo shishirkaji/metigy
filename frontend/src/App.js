@@ -78,7 +78,8 @@ const App = () => {
     });
   };
   useEffect(() => {
-    axios.defaults.baseURL = "http://localhost:5000/api/v1";
+    axios.defaults.baseURL = "http://192.168.43.244:5000/api/v1";
+    // axios.defaults.baseURL = "http://localhost:5000/api/v1";
     axios.defaults.headers.post["Content-Type"] = "application/json";
   }, []);
 
