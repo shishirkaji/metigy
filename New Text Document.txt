@@ -1,3 +1,11 @@
-//create table
-CREATE TABLE `googleads`.`user_setting` ( `ID` INT NOT NULL AUTO_INCREMENT , `waittarget1` INT(3) NOT NULL , `waittarget2` INT(3) NOT NULL , `incognito` BOOLEAN NOT NULL , `visitpage` BOOLEAN NOT NULL , `pagestart` INT NOT NULL , `pagestop` INT NOT NULL , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
-//
+docker build -t shishircodes/googleads-db:v0 .
+
+docker run -d -p 3306:3306 shishircodes/googleads-db:v0
+
+docker ps 
+//get the running container name and then
+
+docker exec -it serene_raman /bin/sh
+
+
+

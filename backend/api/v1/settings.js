@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("./../../Db/db").db;
+const db = require("./../../DB/db").db;
 const { check, validationResult } = require("express-validator");
 
 // route :PUT /api/v1/settings

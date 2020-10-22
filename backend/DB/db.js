@@ -2,6 +2,9 @@ const mysql = require("mysql");
 
 const db = mysql.createConnection({
   host: "localhost",
+  // for docker chaning the host 
+  host: "db",
+  // port: 3308,
   user: "shishir",
   password: "shishir",
   database: "googleads",

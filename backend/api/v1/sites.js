@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("./../../Db/db").db;
+const db = require("./../../DB/db").db;
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 // route :POST /api/v1/site

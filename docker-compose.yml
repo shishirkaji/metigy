@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    build: ./DB
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    restart: on-failure 
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    container_name: react-ui
+    stdin_open: true
+    
