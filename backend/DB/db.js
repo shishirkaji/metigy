@@ -10,15 +10,18 @@ const db = mysql.createConnection({
   database: "googleads",
 });
 const connectDB = () => {
+
+  
   return new Promise((resolve) => {
     db.connect((err) => {
       if (err) {
-        throw err;
-      }else 
+        console.log("exiting the system" + err.stack)
+        return process.exit(1)
+      } else
 
-      return resolve("Db connected")
+        return resolve("Db connected")
     });
   });
 };
 
-module.exports = { connectDB,db };
+module.exports = { connectDB, db };

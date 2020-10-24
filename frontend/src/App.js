@@ -78,8 +78,12 @@ const App = () => {
     });
   };
   useEffect(() => {
-    axios.defaults.baseURL = "http://192.168.43.244:5000/api/v1";
-    // axios.defaults.baseURL = "http://localhost:5000/api/v1";
+
+    // please enter your IP address to see the application on your mobile device.
+    // localhost will not let your mobile device connect with the nodejs server 
+
+    // axios.defaults.baseURL = "http://[YOUR_IP_ADDRESS]:5000/api/v1";
+    axios.defaults.baseURL = "http://localhost:5000/api/v1";
     axios.defaults.headers.post["Content-Type"] = "application/json";
   }, []);
 
@@ -170,7 +174,7 @@ const App = () => {
         <CssBaseline />
         <AppBar position="sticky" style={{ flexGrow: 1 }}>
           <Toolbar>
-            <div style ={{marginRight  : "10px"}}>
+            <div style={{ marginRight: "10px" }}>
               <h4>Google AdWord Configurator</h4>
             </div>
             <Button

@@ -4,7 +4,7 @@
   "description": "Test project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "shishir",
   "license": "ISC",
