@@ -24,7 +24,7 @@ const Sites = ({ classes, resetSite, sites, ID }) => {
   };
   const addSite = (e) => {
     if (state.length === 0) {
-      toast.error("Please type word and click add.")
+      toast.error("Please enter a valid site and click add.")
       return null;
     } e.preventDefault();
     console.log("adding.... site");
