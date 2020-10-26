@@ -25,6 +25,7 @@ const Settings = ({
     checkedD: true,
     checkedE: true,
     checkedF: true,
+    checkedG: true,
     checkedH: true,
     checkedI: true,
     checkedJ: true,
