@@ -21,8 +21,21 @@ const Settings = ({
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
+    checkedC: true,
+    checkedD: true,
+    checkedE: true,
     checkedF: true,
-    checkedG: true,
+    checkedH: true,
+    checkedI: true,
+    checkedJ: true,
+    checkedK: true,
+    checkedL: true,
+    checkedM: true,
+    checkedN: true,
+    checkedO: true,
+    checkedP: true,
+    checkedQ: true,
+    checkedR: true,
   });
   const useStyles = makeStyles({
     button: {
@@ -106,9 +119,9 @@ const Settings = ({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={state.checkedB}
+                      checked={state.checkedC}
                       onChange={handleChange}
-                      name="checkedB"
+                      name="checkedC"
                       color="primary"
                     />
                   }
@@ -119,9 +132,9 @@ const Settings = ({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={state.checkedB}
+                      checked={state.checkedD}
                       onChange={handleChange}
-                      name="checkedB"
+                      name="checkedD"
                       color="primary"
                     />
                   }
@@ -132,9 +145,9 @@ const Settings = ({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={state.checkedB}
+                      checked={state.checkedE}
                       onChange={handleChange}
-                      name="checkedB"
+                      name="checkedE"
                       color="primary"
                     />
                   }
@@ -303,65 +316,65 @@ const Settings = ({
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedA}
+                    checked={state.checkedG}
                     onChange={handleChange}
-                    name="checkedA"
+                    name="checkedG"
                     color="primary"
                   />
                 }
-                label="Chrome"
+                label="Device Reset"
               />
             </div>{" "}
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedH}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedH"
                     color="primary"
                   />
                 }
-                label="Firefox"
+                label="Vinn Reset"
               />
             </div>
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedI}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedI"
                     color="primary"
                   />
                 }
-                label="Explorer"
+                label="Phone Reset"
               />
             </div>
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedJ}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedJ"
                     color="primary"
                   />
                 }
-                label="Safari"
+                label="Mobile Data"
               />
             </div>
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedK}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedK"
                     color="primary"
                   />
                 }
-                label="Opera"
+                label="Fly Mode"
               />
             </div>
           </FormGroup>
@@ -375,121 +388,97 @@ const Settings = ({
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedA}
+                    checked={state.checkedL}
                     onChange={handleChange}
-                    name="checkedA"
+                    name="checkedL"
                     color="primary"
                   />
                 }
-                label="Chrome"
+                label="Remove Cookies"
               />
             </div>{" "}
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedM}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedM"
                     color="primary"
                   />
                 }
-                label="Firefox"
+                label="Change Resolution"
               />
             </div>
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedN}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedN"
                     color="primary"
                   />
                 }
-                label="Explorer"
+                label="Mouse Tracks"
               />
             </div>
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedO}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedO"
                     color="primary"
                   />
                 }
-                label="Safari"
+                label="Data Saving Mode"
               />
             </div>
-            <div style={style.checkbox}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={state.checkedB}
-                    onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Opera"
-              />
-            </div>
+          
           </FormGroup>
           <FormGroup row>
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedA}
+                    checked={state.checkedP}
                     onChange={handleChange}
-                    name="checkedA"
+                    name="checkedP"
                     color="primary"
                   />
                 }
-                label="Chrome"
+                label="Random Generate"
               />
             </div>{" "}
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedQ}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedQ"
                     color="primary"
                   />
                 }
-                label="Firefox"
+                label="Analytics Protection"
               />
             </div>
             <div style={style.checkbox}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state.checkedB}
+                    checked={state.checkedR}
                     onChange={handleChange}
-                    name="checkedB"
+                    name="checkedR"
                     color="primary"
                   />
                 }
-                label="Explorer"
+                label="Remove History"
               />
             </div>
-            <div style={style.checkbox}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={state.checkedB}
-                    onChange={handleChange}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Safari"
-              />
-            </div>
+            
           </FormGroup>
         </div>{" "}
       </Grid>
