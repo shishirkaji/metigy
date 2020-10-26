@@ -225,7 +225,7 @@ const Settings = ({
                       color="primary"
                     />
                   }
-                  label="Visit the paage with the Site"
+                  label="Visit the page with the Site"
                 />
               </div>
             </FormGroup>{" "}
